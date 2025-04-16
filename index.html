@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glow & Bloom - Your Skincare Solutions</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f1de; /* Soft beige background */
+            color: #333;
+            line-height: 1.6;
+        }
+        header {
+            background-color: #a4bbc8; /* Muted blue header */
+            color: white;
+            padding: 1em 0;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0.5em 0;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 1em;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+        nav a:hover {
+            color: #e0f2f7;
+        }
+        .hero {
+            background-color: #e0f2f7; /* Light cyan hero */
+            padding: 3em 2em;
+            text-align: center;
+            margin-bottom: 2em;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            /* Box Model Example */
+            margin-left: 5%;
+            margin-right: 5%;
+        }
+        .hero h1 {
+            font-size: 2.5em;
+            margin-bottom: 0.5em;
+            color: #37474f;
+        }
+        .hero p {
+            font-size: 1.1em;
+            color: #546e7a;
+            margin-bottom: 1.5em;
+        }
+        .concerns-section {
+            padding: 2em;
+            text-align: center;
+        }
+        .concern-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5em;
+            margin-top: 1.5em;
+            padding: 0 5%;
+        }
+        .concern-card {
+            background-color: white;
+            padding: 1.5em;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            text-align: left;
+        }
+        .concern-card h3 {
+            color: #37474f;
+            margin-top: 0;
+            margin-bottom: 0.5em;
+        }
+        .concern-card ul, .concern-card ol {
+            padding-left: 1.5em;
+            color: #546e7a;
+        }
+        .concern-card a {
+            color: #1e88e5;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+        .concern-card a:hover {
+            color: #42a5f5;
+        }
+        .solutions-section {
+            background-color: #e8f5e9; /* Light green solutions */
+            padding: 2em;
+            text-align: center;
+            margin-top: 2em;
+        }
+        .solution-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 1.5em;
+        }
+        .solution-list li {
+            background-color: white;
+            padding: 1.2em;
+            margin-bottom: 1em;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+        .solution-list li h3 {
+            color: #388e3c;
+            margin-top: 0;
+            margin-bottom: 0.3em;
+        }
+        .solution-list li p {
+            color: #43a047;
+        }
+        .product-table {
+            width: 80%;
+            margin: 2em auto;
+            border-collapse: collapse;
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            border-radius: 8px;
+            overflow: hidden; /* To contain the border-radius */
+        }
+        .product-table th, .product-table td {
+            border-bottom: 1px solid #e0e0e0;
+            padding: 0.8em;
+            text-align: left;
+        }
+        .product-table th {
+            background-color: #c8e6c9; /* Light green table header */
+            color: #388e3c;
+            font-weight: bold;
+        }
+        .product-table tr:last-child td {
+            border-bottom: none;
+        }
+        .contact-form {
+            background-color: white;
+            padding: 2em;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: 60%;
+            margin: 2em auto;
+        }
+        .contact-form label {
+            display: block;
+            margin-bottom: 0.5em;
+            font-weight: bold;
+            color: #37474f;
+        }
+        .contact-form input[type="text"],
+        .contact-form input[type="email"],
+        .contact-form textarea {
+            width: calc(100% - 12px);
+            padding: 0.7em;
+            margin-bottom: 1em;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box; /* Box Model */
+        }
+        .contact-form button {
+            background-color: #1e88e5;
+            color: white;
+            padding: 0.8em 1.5em;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        .contact-form button:hover {
+            background-color: #42a5f5;
+        }
+        footer {
+            background-color: #37474f; /* Dark grey footer */
+            color: white;
+            text-align: center;
+            padding: 1.5em 0;
+            margin-top: 2em;
+            position: relative; /* CSS Positioning for potential absolute elements */
+        }
+        .floating-link {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 0.5em 1em;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 0.9em;
+        }
+        .frames-container {
+            display: flex;
+            justify-content: space-around;
+            margin: 2em 5%;
+        }
+        .frame-wrapper {
+            width: 45%;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        .frame-wrapper h4 {
+            background-color: #f5f5f5;
+            color: #37474f;
+            padding: 0.5em;
+            text-align: center;
+            margin-top: 0;
+        }
+        iframe {
+            width: 100%;
+            height: 200px;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Glow & Bloom</h1>
+        <nav>
+            <ul>
+                <li><a href="#concerns">Skincare Concerns</a></li>
+                <li><a href="#solutions">Our Solutions</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="external.html" target="_blank">External Link</a></li>
+            </ul>
+        </nav>
+        <marquee behavior="scroll" direction="left" scrollamount="4" style="color: white; padding-top: 0.5em;">
+            ✨ Discover the secret to radiant skin! Explore our expert solutions and find your perfect glow. ✨
+        </marquee>
+    </header>
+
+    <section class="hero">
+        <h1>Unlock Your Radiant Skin</h1>
+        <p>Discover expert solutions and personalized advice to address all your skincare concerns.</p>
+        <a href="#concerns" style="background-color: #4caf50; color: white; padding: 0.8em 1.5em; text-decoration: none; border-radius: 5px; font-weight: bold;">Explore Concerns</a>
+    </section>
+
+    <section id="concerns" class="concerns-section">
+        <h2>Common Skincare Concerns</h2>
+        <div class="concern-grid">
+            <div class="concern-card">
+                <h3>Acne & Breakouts</h3>
+                <ul>
+                    <li>Understanding Acne Types</li>
+                    <li>Effective Cleansing Techniques</li>
+                    <li>Topical Treatments</li>
+                    <li>Lifestyle Adjustments</li>
+                </ul>
+                <a href="https://www.healthline.com/health/beauty-skin-care/why-am-i-breaking-out">View Acne Solutions</a>
+            </div>
+            <div class="concern-card">
+                <h3>Dry & Dehydrated Skin</h3>
+                <ol>
+                    <li>Identifying Dry Skin Symptoms</li>
+                    <li>Importance of Hydration</li>
+                    <li>Best Moisturizing Ingredients</li>
+                    <li>Creating a Hydrating Routine</li>
+                </ol>
+                <a href="https://www.shankara.in/blogs/shankara-blogs/dry-skin-causes-and-effective-solutions">Explore Dry Skin Solutions</a>
+            </div>
+            <div class="concern-card">
+                <h3>Aging & Wrinkles</h3>
+                <dl>
+                    <dt>Fine Lines</dt>
+                    <dd>Superficial wrinkles that appear with age.</dd>
+                    <dt>Deep Wrinkles</dt>
+                    <dd>More pronounced wrinkles often due to collagen loss.</dd>
+                    <dt>Prevention Strategies</dt>
+                    <dd>Sun protection and antioxidant use.</dd>
+                </dl>
+                <a href="https://www.olivaclinic.com/blog/anti-aging-treatments/">See Anti-Aging Solutions</a>
+            </div>
+            <div class="concern-card">
+                <h3>Sensitive Skin & Redness</h3>
+                <ul>
+                    <li>Identifying Triggers</li>
+                    <li>Gentle Skincare Products</li>
+                    <li>Soothing Ingredients</li>
+                    <li>Patch Testing Guide</li>
+                </ul>
+                <a href="https://www.miduty.in/blogs/skincare/skincare-for-sensitive-skin-causes-and-recommended-routine-solution">Find Sensitive Skin Solutions</a>
+            </div>
+            <div class="concern-card">
+                <h3>Dark Spots & Hyperpigmentation</h3>
+                <ul>
+                    <li>Causes of Dark Spots</li>
+                    <li>Brightening Ingredients</li>
+                    <li>Sunscreen for Prevention</li>
+                    <li>Treatment Options</li>
+                </ul>
+                <a href="https://www.top10homeremedies.com/archives/facespots.html">Learn About Dark Spot Solutions</a>
+            </div>
+            <div class="concern-card">
+                <h3>Oily & Combination Skin</h3>
+                <ol>
+                    <li>Understanding Oil Production</li>
+                    <li>Balancing Combination Skin</li>
+                    <li>Non-Comedogenic Products</li>
+                    <li>Mattifying Techniques</li>
+                </ol>
+                <a href="https://www.healthline.com/health/home-remedies-for-oily-skin">Discover Solutions for Oily Skin</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="solutions" class="solutions-section">
+        <h2>Our Skincare Solutions</h2>
+        <p>Discover targeted approaches and expert advice to address your specific concerns and achieve healthy, glowing skin.</p>
+        <ul class="solution-list">
+            <li>
+                <h3>Ingredient Spotlight</h3>
+                <p>Learn about the power of key skincare ingredients like Hyaluronic Acid, Vitamin C, Retinol, and more.</p>
+                <a href="https://universityskininstitute.com/treatments/the-power-of-ingredients-exploring-retinoids-hyaluronic-acid-and-vitamin-c/">Explore Ingredients</a>
+            </li>
+            <li>
+                <h3>Personalized Skincare Routines</h3>
+                <p>Find recommended daily and weekly skincare routines tailored to different skin types and concerns.</p>
+                <a href="https://byshree.com/blogs/news/skincare-routines-for-different-ages-and-skin-types">See Skincare Routines</a>
+            </li>
+            <li>
+                <h3>Product Recommendations</h3>
+                <p>Explore our curated selection of effective and gentle skincare products.</p>
+                <a href="https://www.simpleskincare.in/collections/sensitive-skin">Shop Our Products</a>
+            </li>
+            <li>
+                <h3>Expert Tips & Advice</h3>
+                <p>Read our blog for the latest skincare tips, expert advice, and debunking common myths.</p>
+                <a href="https://www.byrdie.com/best-skin-care-tips">Read Our Blog</a>
+            </li>
+        </ul>
+
+        <h2>Featured Products</h2>
+        <table class="product-table">
+            <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Link</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Hydrating Hyaluronic Serum</td>
+                    <td>A lightweight serum that deeply hydrates and plumps the skin.</td>
+                    <td>800.00</td>
+                    <td><a href="https://en.wikipedia.org/wiki/Serum_(blood)">View Details</a></td>
+                </tr>
+                <tr>
+                    <td>Vitamin C Brightening Serum</td>
+                    <td>A potent antioxidant serum that brightens skin and reduces dark spots.</td>
+                    <td>900.00</td>
+                    <td><a href="https://en.wikipedia.org/wiki/Serum_(blood)">View Details</a></td>
+                </tr>
+                <tr>
+                    <td>Gentle Retinol Night Cream</td>
+                    <td>A mild retinol cream to improve skin texture and reduce fine lines.</td>
+                    <td>1000.00</td>
+                    <td><a href="https://en.wikipedia.org/wiki/Serum_(blood)">View Details</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section id="about" style="padding: 2em; text-align: center;">
+        <h2>About Glow & Bloom</h2>
+        <p>We are passionate about providing you with reliable information and effective skincare solutions. Our mission is to empower you to achieve healthy and radiant skin through expert knowledge and carefully selected products.</p>
+        <div class="frames-container">
+            <div class="frame-wrapper">
+                <h4>Our Philosophy</h4>
+                <iframe src="https://www.vogue.in/"></iframe>
+            </div>
+            <div class="frame-wrapper">
+                <h4>Meet the Team</h4>
+                <iframe src="https://www.vogue.in/"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" style="background-color: #f0f8ff; padding: 2em; text-align: center;">
+        <h2>Contact Us</h2>
+        <p>Have questions or need personalized skincare advice? Reach out to our team of experts.</p>
+        <form class="contact-form">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required><br>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required><br>
+
+            <label for="concern">Skincare Concern:</label>
+            <select id="concern" name="concern">
+                <option value="">Select a concern</option>
+                <option value="acne">Acne & Breakouts</option>
+                <option value="dryness">Dry & Dehydrated Skin</option>
+                <option value="aging">Aging & Wrinkles</option>
+                <option value="sensitive">Sensitive Skin & Redness</option>
+                <option value="dark_spots">Dark Spots & Hyperpigmentation</option>
+                <option value="oily">Oily & Combination Skin</option>
+                <option value="other">Other</option>
+            </select><br>
+
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="5" required></textarea><br>
+
+            <button type="submit">Send Message</button>
+        </form>
+        <p>Email: info@glowandbloom.com</p>
+        <p>Phone: +91 9876543210</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Glow & Bloom. All rights reserved.</p>
+        <a href="#" class="floating-link">Back to Top</a>
+    </footer>
+
+</body>
+</html>
